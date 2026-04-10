@@ -15,6 +15,7 @@ def solution(weights):
     weights_set = set(weights)
     weights_com_list = combinations(weights_set, 2)
     
+    # 다른 것을 뽑는 경우
     for a, b in weights_com_list:
         if a == b:
             continue
