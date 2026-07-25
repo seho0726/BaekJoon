@@ -27,4 +27,5 @@ def solution(n, computers):
             bfs(x, computers)
             answer += 1
     
+    
     return answer
