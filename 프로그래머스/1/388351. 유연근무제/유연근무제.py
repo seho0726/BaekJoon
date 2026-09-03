@@ -1,32 +1,29 @@
 def solution(schedules, timelogs, startday):
     
-    result = 0
-
-    for i in range (len(schedules)):
-        flag = 0
-        want_schedules = schedules[i] + 10
-
-        if(want_schedules % 100 >= 60):
-            want_schedules = want_schedules + 40
-            
-        count_start = startday
-        for log in timelogs[i]:
-            
-            if count_start == 6 or count_start == 7:
-                count_start += 1
-                if count_start > 7:
-                    count_start = 1
-                continue
-
-            if log > want_schedules:
-                flag = 1
-                break
-        
-            count_start += 1
-        
-        if flag == 0:
-            result += 1
-
-    answer = result
+    hope_schedules = []
+    count = 0
     
-    return answer
+    for h in schedules:
+        if (int(h) + 10) % 100 >= 60 :
+            hope_schedules.append((int(h) // 100 + 1) * 100 + int(h) % 10)
+            continue
+        hope_schedules.append(int(h) + 10)
+        
+    for i in range(len(hope_schedules)):
+        t = startday
+        count += 1
+        for x in range(7):
+            
+            if timelogs[i][x] > hope_schedules[i] and not t >= 6:
+                count -= 1
+                break
+                
+            t += 1
+            
+            if t == 8:
+                t = 1
+                
+    if count < 0:
+        count = 0
+        
+    return count
