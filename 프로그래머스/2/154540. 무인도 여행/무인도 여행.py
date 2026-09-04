@@ -10,12 +10,12 @@ def solution(maps):
     dx = [0, 0, -1, 1]
     dy = [1, -1, 0, 0]
     
-    def bfs(r, c):
-        q = deque([(r, c)])
+    def bfs(r,c):
+        q = deque([(r,c)])
         visited[r][c] = True
         total = int(maps[r][c])
         
-        while q:
+        while q :
             x, y = q.popleft()
             
             for i in range(4):
@@ -28,7 +28,7 @@ def solution(maps):
                         total += int(maps[nx][ny])
                         q.append((nx, ny))
         return total
-    
+
     for a in range(n):
         for b in range(m):
             if maps[a][b] != 'X' and not visited[a][b]:
